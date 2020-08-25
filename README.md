@@ -1,5 +1,7 @@
 # udacity-flashcards-app
 
+Mobile Flashcards is a React Native application that allows a user to create decks and add cards (questions and answers) to that deck.
+
 ## Available Scripts
 
 To get started with the project-
@@ -13,11 +15,3 @@ This would install all the dependencies required for the application to run on y
 
 This would open up metro bundler in your browser along with a QR code, using which you can run this application on your mobile phone. <br />
 Download the 'expo-client' app on your smartphone to scan and run the application.
-
-## Built using
-
-- react
-- react-dom
-- react-native
-- react-navigation
-- AsyncStorage
