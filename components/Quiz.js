@@ -17,16 +17,20 @@ export default class Quiz extends React.Component {
   };
 
   async componentDidMount() {
-    const { deckTitle } = this.props.route.params;
-    const deckDataFunc = await getDeck(deckTitle).catch((error) => {
-      console.log('Questions could not be loaded', error);
-    });
-    if (deckDataFunc !== undefined) {
-      const totalQuestions = deckDataFunc.questions.length;
-      this.setState({
-        deckData: deckDataFunc,
-        totalQuestions,
+    try {
+      const { deckTitle } = this.props.route.params;
+      const deckDataFunc = await getDeck(deckTitle).catch((error) => {
+        console.log('Questions could not be loaded', error);
       });
+      if (deckDataFunc !== undefined) {
+        const totalQuestions = deckDataFunc.questions.length;
+        this.setState({
+          deckData: deckDataFunc,
+          totalQuestions,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 

@@ -10,15 +10,19 @@ class DeckList extends Component {
   };
 
   async componentDidMount() {
-    const { navigation } = this.props;
-    navigation.addListener('focus', async () => {
-      const result = await getDecks().catch((error) => {
-        console.error('Deck Data could not be fetched', error);
+    try {
+      const { navigation } = this.props;
+      navigation.addListener('focus', async () => {
+        const result = await getDecks().catch((error) => {
+          console.error('Deck Data could not be fetched', error);
+        });
+        this.setState({
+          decks: result,
+        });
       });
-      this.setState({
-        decks: result,
-      });
-    });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
