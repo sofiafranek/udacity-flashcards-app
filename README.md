@@ -1,19 +1,4 @@
-# FlashCards-react-native-app
-### Project developed as a part of Udacity's React Nanodegree Program
-This project was created with [Expo](https://github.com/expo/expo), and is tested on Android.
-
-## Table of Contents
-* [Overview](#overview)
-* [Available Scripts](#available-scripts)
-* [Built Using](#built-using)
-* [Author](#author)
-
-
-## Overview 
-
-'FlashCards' is a react-native application built using expo-cli. <br />
-This app lets users create new flash-cards, allocate them in different decks and also to take a quiz on a particular deck.
-
+# udacity-flashcards-app
 
 ## Available Scripts
 
@@ -31,13 +16,8 @@ Download the 'expo-client' app on your smartphone to scan and run the applicatio
 
 ## Built using
 
-* react
-* react-dom
-* react-native
-* react-navigation
-* AsyncStorage
-
-## Author
-
-Kaushik M. Shetty
-# udacity-flashcards-app
+- react
+- react-dom
+- react-native
+- react-navigation
+- AsyncStorage
