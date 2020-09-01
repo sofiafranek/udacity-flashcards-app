@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, Alert } from 'react-native';
 
-import TextButton from './TextButton';
+import TextButton from '../components/TextButton';
 import { saveQuestion } from '../utils/helper';
+
+import styles from '../utils/stylesheet';
 
 const AddCard = (props) => {
   const [question, setQuestion] = useState('');
@@ -52,40 +54,5 @@ const AddCard = (props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    margin: 20,
-    padding: 10,
-    backgroundColor: '#f5f5f5',
-  },
-  textInput: {
-    width: 250,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'black',
-    borderRadius: 10,
-    padding: 10,
-    fontSize: 16,
-    margin: 10,
-    color: 'black',
-    backgroundColor: '#f7f7f7',
-  },
-  subTitle: {
-    padding: 10,
-    margin: 10,
-    textAlign: 'center',
-    color: 'black',
-    backgroundColor: '#f7f7f7',
-    fontSize: 22,
-    borderRadius: 20,
-  },
-  text: {
-    fontSize: 18,
-  },
-});
 
 export default AddCard;

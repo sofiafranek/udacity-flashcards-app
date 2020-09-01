@@ -1,55 +1,12 @@
 import { AsyncStorage } from 'react-native';
+import Data from '../constants/data';
 // Store the data in asyncStorage
 
-export const STORAGE_KEY = 'UDACICARDS:Decks';
-
-const startData = {
-  HTML: {
-    title: 'HTML',
-    questions: [
-      {
-        question: 'What does HTML stand for?',
-        answer: 'Hyper Text Markup Language',
-      },
-    ],
-  },
-  CSS: {
-    title: 'CSS',
-    questions: [
-      {
-        question: 'What does CSS stand for?',
-        answer: 'Cascading Style Sheet',
-      },
-    ],
-  },
-  React: {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces',
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event',
-      },
-    ],
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer:
-          'The combination of a function and the lexical environment within which that function was declared.',
-      },
-    ],
-  },
-};
+export const STORAGE_KEY = 'UdacityFlashCardsApp:Decks';
 
 // Define methods to access the data
 export const _store_data = async () => {
-  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(startData)).catch((error) => {
+  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(Data)).catch((error) => {
     console.error('Error while setting data to AsynStorage', error);
   });
 };

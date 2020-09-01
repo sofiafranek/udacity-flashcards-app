@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Alert } from 'react-native';
 
 import { saveDeckTitle } from '../utils/helper';
-import TextButton from './TextButton';
+import TextButton from '../components/TextButton';
+
+import styles from '../utils/stylesheet';
 
 const AddDeck = (props) => {
   const [deckName, setDeckName] = useState('');
@@ -33,39 +35,5 @@ const AddDeck = (props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#f5f5f5',
-  },
-  textInput: {
-    width: 250,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'black',
-    borderRadius: 10,
-    padding: 10,
-    fontSize: 16,
-    margin: 10,
-    color: 'black',
-    backgroundColor: '#f7f7f7',
-  },
-  title: {
-    padding: 10,
-    textAlign: 'center',
-    color: 'black',
-    backgroundColor: '#f7f7f7',
-    fontSize: 30,
-    borderRadius: 20,
-    fontWeight: 'bold',
-  },
-  subTitle: {
-    fontSize: 20,
-  },
-});
 
 export default AddDeck;

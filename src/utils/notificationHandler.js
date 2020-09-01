@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { Notifications } from 'expo';
 
-const NOTIFICATION_KEY = 'UDACICARDS:NOTIFICATION';
+const NOTIFICATION_KEY = 'UdacityFlashCardsApp:NOTIFICATION';
 export const clearLocalNotification = () => {
   return AsyncStorage.removeItem(NOTIFICATION_KEY).then(async () => {
     try {
@@ -16,8 +16,8 @@ export const clearLocalNotification = () => {
 
 const createNotification = () => {
   return {
-    title: 'Pracitice makes perfect!',
-    body: "👋 don't forget to practice your flashCards today!",
+    title: 'Practice makes perfect!',
+    body: "👋 don't forget",
     ios: {
       sound: true,
     },

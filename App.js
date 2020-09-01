@@ -8,12 +8,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { setLocalNotification } from './utils/notificationHandler';
-import List from './components/List';
-import AddDeck from './components/AddDeck';
-import Deck from './components/Deck';
-import AddCard from './components/AddCard';
-import Quiz from './components/Quiz';
+import { setLocalNotification } from './src/utils/notificationHandler';
+import Homepage from './src/views/Homepage';
+import AddDeck from './src/views/AddDeck';
+import Deck from './src/components/Deck';
+import AddCard from './src/views/AddCard';
+import Quiz from './src/components/Quiz';
 
 const AppStatusBar = () => {
   return (
@@ -29,8 +29,8 @@ const TabNavigation = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Decks"
-        component={List}
+        name="Home"
+        component={Homepage}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />

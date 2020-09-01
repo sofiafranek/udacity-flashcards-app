@@ -1,5 +1,7 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+
+import styles from '../utils/stylesheet';
 
 const TextButton = ({ onPress, color, name }) => {
   return (
@@ -11,20 +13,5 @@ const TextButton = ({ onPress, color, name }) => {
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  btnSub: {
-    backgroundColor: '#0275d8',
-    width: 250,
-    alignItems: 'center',
-    padding: 10,
-    marginBottom: 20,
-    borderRadius: 10,
-  },
-  btnTxt: {
-    fontSize: 16,
-    color: '#f7f7f7',
-  },
-});
 
 export default TextButton;
