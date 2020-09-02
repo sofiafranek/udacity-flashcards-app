@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#f5f5f5',
   },
   textInput: {
     width: 250,
@@ -25,7 +24,6 @@ const styles = StyleSheet.create({
     padding: 10,
     textAlign: 'center',
     color: 'black',
-    backgroundColor: '#f7f7f7',
     fontSize: 30,
     borderRadius: 20,
     fontWeight: 'bold',
@@ -35,7 +33,6 @@ const styles = StyleSheet.create({
     margin: 10,
     textAlign: 'center',
     color: 'black',
-    backgroundColor: '#f7f7f7',
     fontSize: 22,
     borderRadius: 20,
   },
@@ -77,7 +74,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     margin: 50,
-    width: 300,
     maxHeight: 400,
   },
   card: {

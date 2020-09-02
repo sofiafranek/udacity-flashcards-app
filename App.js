@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { setLocalNotification } from './src/utils/notificationHandler';
+import { createLocalNotification } from './src/utils/notificationHandler';
 import Homepage from './src/views/Homepage';
 import AddDeck from './src/views/AddDeck';
 import Deck from './src/components/Deck';
@@ -64,7 +64,7 @@ const StackNavigation = () => {
 };
 
 const App = () => {
-  setLocalNotification();
+  createLocalNotification();
 
   return (
     <NavigationContainer>

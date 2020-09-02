@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
-// import CardFlip from 'react-native-card-flip';
 import FlipCard from 'react-native-flip-card';
 
 import styles from '../utils/stylesheet';
 
 import { getDeck } from '../utils/helper';
-import { setLocalNotification, clearLocalNotification } from '../utils/notificationHandler';
+import { createLocalNotification, removeNotifications } from '../utils/notificationHandler';
 import TextButton from '../components/TextButton';
 
 const Quiz = (props) => {
@@ -15,7 +14,6 @@ const Quiz = (props) => {
   const [answeredQuestions, setAnsweredQuestions] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
-  // const [flipIndex, setFlipIndex] = useState(0);
 
   const [error, setError] = useState(null);
   async function getData() {
@@ -45,25 +43,15 @@ const Quiz = (props) => {
     setCorrectAnswers(0);
   };
 
-  // const handleOnFlip = (flipIndex) => {
-  //   setFlipIndex(flipIndex);
-  // };
-
   const handleCorrect = () => {
-    setAnsweredQuestions(usePrevious(answeredQuestions + 1));
-    setCorrectAnswers(usePrevious(correctAnswers - 1));
+    setAnsweredQuestions(answeredQuestions + 1);
+    setCorrectAnswers(correctAnswers - 1);
     setShowAnswer(false);
-    // if (flipIndex === 1) {
-    //   this.card.flip();
-    // }
   };
 
   const handleIncorrect = () => {
-    setAnsweredQuestions(usePrevious(answeredQuestions + 1));
+    setAnsweredQuestions(answeredQuestions + 1);
     setShowAnswer(false);
-    // if (flipIndex === 1) {
-    //   this.card.flip();
-    // }
   };
 
   if (deckData === null) {
@@ -87,7 +75,7 @@ const Quiz = (props) => {
   }
 
   if (answeredQuestions === totalQuestions) {
-    clearLocalNotification().then(setLocalNotification);
+    removeNotifications().then(createLocalNotification);
     return (
       <View style={styles.container}>
         <Text style={[styles.infoText, styles.greetText]}>
@@ -127,21 +115,6 @@ const Quiz = (props) => {
       <TextButton name="Incorrect" onPress={() => handleIncorrect()} />
     </View>
   );
-};
-
-// Hook
-const usePrevious = (value) => {
-  // The ref object is a generic container whose current property is mutable ...
-  // ... and can hold any value, similar to an instance property on a class
-  const ref = useRef();
-
-  // Store current value in ref
-  useEffect(() => {
-    ref.current = value;
-  }, [value]); // Only re-run if value changes
-
-  // Return previous value (happens before update in useEffect above)
-  return ref.current;
 };
 
 export default Quiz;

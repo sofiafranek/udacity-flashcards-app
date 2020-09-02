@@ -1,55 +1,70 @@
-import React from 'react';
 import { AsyncStorage } from 'react-native';
-import * as Permissions from 'expo-permissions';
 import { Notifications } from 'expo';
 
-const NOTIFICATION_KEY = 'UdacityFlashCardsApp:NOTIFICATION';
-export const clearLocalNotification = () => {
-  return AsyncStorage.removeItem(NOTIFICATION_KEY).then(async () => {
-    try {
-      Notifications.cancelAllScheduledNotificationsAsync();
-    } catch (error) {
-      console.log(error);
-    }
-  });
+import * as Permissions from 'expo-permissions';
+
+const STORAGE_KEY = 'NOTIFICATION';
+const NOTIFICATION_CHANNEL_ID = 'QUICK_REMAINDERS';
+
+export const removeNotifications = () => {
+  return AsyncStorage.removeItem(STORAGE_KEY).then(
+    Notifications.cancelAllScheduledNotificationsAsync
+  );
 };
 
-const createNotification = () => {
+const sendNotification = () => {
   return {
-    title: 'Practice makes perfect!',
-    body: "👋 don't forget",
+    title: 'Flashcards',
+    body: "👋 Forgot to study? here's a quick remainder",
     ios: {
       sound: true,
     },
     android: {
-      sound: true,
-      priority: 'high',
+      channelId: NOTIFICATION_CHANNEL_ID,
       sticky: false,
-      vibrate: true,
     },
   };
 };
 
-export const setLocalNotification = () => {
-  AsyncStorage.getItem(NOTIFICATION_KEY)
+const createNotificationChannel = () => {
+  return {
+    name: 'Daily Reminder',
+    description: 'A daily remainder to keep you tracked',
+    sound: true,
+    priority: 'high',
+  };
+};
+
+export const createLocalNotification = () => {
+  AsyncStorage.getItem(STORAGE_KEY)
     .then(JSON.parse)
     .then((data) => {
       if (data === null) {
         Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
           if (status === 'granted') {
-            Notifications.cancelAllScheduledNotificationsAsync();
+            Notifications.createChannelAndroidAsync(
+              NOTIFICATION_CHANNEL_ID,
+              createNotificationChannel()
+            )
+              .then(() => {
+                Notifications.cancelAllScheduledNotificationsAsync();
 
-            let tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(20);
-            tomorrow.setMinutes(0);
+                const nextDay = new Date();
 
-            Notifications.scheduleLocalNotificationAsync(createNotification(), {
-              time: tomorrow,
-              repeat: 'day',
-            });
+                nextDay.setDate(nextDay.getDate() + 1);
+                nextDay.setHours(20);
+                nextDay.setMinutes(0);
 
-            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+                Notifications.scheduleLocalNotificationAsync(sendNotification(), {
+                  time: nextDay,
+                  repeat: 'day',
+                });
+
+                AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(true));
+              })
+              .catch((error) => {
+                console.log('error', error);
+              });
           }
         });
       }
