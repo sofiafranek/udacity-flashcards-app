@@ -4,6 +4,8 @@ import { View, Text, StyleSheet, Alert } from 'react-native';
 import { getDeck, deleteDeck } from '../utils/helper';
 import TextButton from './TextButton';
 
+import styles from '../utils/stylesheet';
+
 const Deck = (props) => {
   const [deckData, setDeckData] = useState(null);
   const [totalQuestions, setTotalQuestions] = useState(0);
@@ -74,34 +76,5 @@ const Deck = (props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
-  textContent: {
-    flex: 1,
-    minHeight: 200,
-    maxHeight: 300,
-    width: 300,
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    margin: 10,
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 10,
-    backgroundColor: '#edeeef',
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-  content: {
-    fontSize: 20,
-    fontWeight: '700',
-  },
-});
 
 export default Deck;

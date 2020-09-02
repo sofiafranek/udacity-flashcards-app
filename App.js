@@ -13,7 +13,7 @@ import Homepage from './src/views/Homepage';
 import AddDeck from './src/views/AddDeck';
 import Deck from './src/components/Deck';
 import AddCard from './src/views/AddCard';
-import Quiz from './src/components/Quiz';
+import Quiz from './src/views/Quiz';
 
 const AppStatusBar = () => {
   return (

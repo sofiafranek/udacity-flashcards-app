@@ -135,6 +135,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
+  textContent: {
+    flex: 1,
+    minHeight: 200,
+    maxHeight: 300,
+    width: 300,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    margin: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: '#edeeef',
+  },
+  content: {
+    fontSize: 20,
+    fontWeight: '700',
+  },
 });
 
 export default styles;

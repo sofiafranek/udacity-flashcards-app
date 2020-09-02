@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import CardFlip from 'react-native-card-flip';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text } from 'react-native';
+// import CardFlip from 'react-native-card-flip';
+import FlipCard from 'react-native-flip-card';
 
 import styles from '../utils/stylesheet';
 
 import { getDeck } from '../utils/helper';
 import { setLocalNotification, clearLocalNotification } from '../utils/notificationHandler';
-import TextButton from './TextButton';
-
-const usePrevious = (value) => {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
+import TextButton from '../components/TextButton';
 
 const Quiz = (props) => {
   const [deckData, setDeckData] = useState(null);
@@ -22,7 +15,7 @@ const Quiz = (props) => {
   const [answeredQuestions, setAnsweredQuestions] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
-  const [flipIndex, setFlipIndex] = useState(0);
+  // const [flipIndex, setFlipIndex] = useState(0);
 
   const [error, setError] = useState(null);
   async function getData() {
@@ -39,6 +32,7 @@ const Quiz = (props) => {
       }
     } catch (e) {
       setError(e);
+      console.log(e, 'error');
     }
   }
 
@@ -51,25 +45,25 @@ const Quiz = (props) => {
     setCorrectAnswers(0);
   };
 
-  const handleOnFlip = (flipIndex) => {
-    setFlipIndex(flipIndex);
-  };
+  // const handleOnFlip = (flipIndex) => {
+  //   setFlipIndex(flipIndex);
+  // };
 
   const handleCorrect = () => {
     setAnsweredQuestions(usePrevious(answeredQuestions + 1));
     setCorrectAnswers(usePrevious(correctAnswers - 1));
     setShowAnswer(false);
-    if (flipIndex === 1) {
-      this.card.flip();
-    }
+    // if (flipIndex === 1) {
+    //   this.card.flip();
+    // }
   };
 
   const handleIncorrect = () => {
     setAnsweredQuestions(usePrevious(answeredQuestions + 1));
     setShowAnswer(false);
-    if (flipIndex === 1) {
-      this.card.flip();
-    }
+    // if (flipIndex === 1) {
+    //   this.card.flip();
+    // }
   };
 
   if (deckData === null) {
@@ -117,35 +111,37 @@ const Quiz = (props) => {
         Question {answeredQuestions + 1} / {totalQuestions}
       </Text>
 
-      <CardFlip
-        style={styles.cardContainer}
-        ref={(card) => (this.card = card)}
-        duration={250}
-        onFlip={handleOnFlip}
-      >
-        <TouchableOpacity
-          activeOpacity={1}
-          style={[styles.card, styles.card1]}
-          onPress={() => this.card.flip()}
-        >
+      <FlipCard style={styles.cardContainer}>
+        <View style={[styles.card, styles.card1]}>
           <Text style={styles.label}>{deckData.questions[answeredQuestions].question}</Text>
           <Text style={styles.normalText}> Tap on card to show answer</Text>
-        </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity
-          activeOpacity={1}
-          style={[styles.card, styles.card2]}
-          onPress={() => this.card.flip()}
-        >
+        <View style={[styles.card, styles.card2]}>
           <Text style={styles.label}>{deckData.questions[answeredQuestions].answer}</Text>
           <Text style={styles.normalText}> Tap on card to show question</Text>
-        </TouchableOpacity>
-      </CardFlip>
+        </View>
+      </FlipCard>
 
       <TextButton name="Correct" onPress={() => handleCorrect()} />
       <TextButton name="Incorrect" onPress={() => handleIncorrect()} />
     </View>
   );
+};
+
+// Hook
+const usePrevious = (value) => {
+  // The ref object is a generic container whose current property is mutable ...
+  // ... and can hold any value, similar to an instance property on a class
+  const ref = useRef();
+
+  // Store current value in ref
+  useEffect(() => {
+    ref.current = value;
+  }, [value]); // Only re-run if value changes
+
+  // Return previous value (happens before update in useEffect above)
+  return ref.current;
 };
 
 export default Quiz;
