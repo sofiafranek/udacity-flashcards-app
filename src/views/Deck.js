@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 
 import { getDeck, deleteDeck } from '../utils/helper';
-import TextButton from './TextButton';
+import TextButton from '../components/TextButton';
 
 import styles from '../utils/stylesheet';
 

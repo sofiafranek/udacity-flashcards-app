@@ -8,10 +8,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { createLocalNotification } from './src/utils/notificationHandler';
+import { setLocalNotification } from './src/utils/notificationHandler';
 import Homepage from './src/views/Homepage';
 import AddDeck from './src/views/AddDeck';
-import Deck from './src/components/Deck';
+import Deck from './src/views/Deck';
 import AddCard from './src/views/AddCard';
 import Quiz from './src/views/Quiz';
 
@@ -64,7 +64,7 @@ const StackNavigation = () => {
 };
 
 const App = () => {
-  createLocalNotification();
+  setLocalNotification();
 
   return (
     <NavigationContainer>

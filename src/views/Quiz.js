@@ -75,7 +75,6 @@ const Quiz = (props) => {
   }
 
   if (answeredQuestions === totalQuestions) {
-    removeNotifications().then(createLocalNotification);
     return (
       <View style={styles.container}>
         <Text style={[styles.infoText, styles.greetText]}>

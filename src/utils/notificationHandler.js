@@ -6,12 +6,6 @@ import * as Permissions from 'expo-permissions';
 const STORAGE_KEY = 'NOTIFICATION';
 const NOTIFICATION_CHANNEL_ID = 'QUICK_REMAINDERS';
 
-export const removeNotifications = () => {
-  return AsyncStorage.removeItem(STORAGE_KEY).then(
-    Notifications.cancelAllScheduledNotificationsAsync
-  );
-};
-
 const sendNotification = () => {
   return {
     title: 'Flashcards',
@@ -26,26 +20,14 @@ const sendNotification = () => {
   };
 };
 
-const createNotificationChannel = () => {
-  return {
-    name: 'Daily Reminder',
-    description: 'A daily remainder to keep you tracked',
-    sound: true,
-    priority: 'high',
-  };
-};
-
-export const createLocalNotification = () => {
+export const setLocalNotification = () => {
   AsyncStorage.getItem(STORAGE_KEY)
     .then(JSON.parse)
     .then((data) => {
       if (data === null) {
         Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
           if (status === 'granted') {
-            Notifications.createChannelAndroidAsync(
-              NOTIFICATION_CHANNEL_ID,
-              createNotificationChannel()
-            )
+            Notifications.createChannelAndroidAsync(NOTIFICATION_CHANNEL_ID)
               .then(() => {
                 Notifications.cancelAllScheduledNotificationsAsync();
 
