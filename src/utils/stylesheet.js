@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   textInput: {
-    width: 250,
+    width: 300,
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: 'black',
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     margin: 10,
     color: 'black',
-    backgroundColor: '#f7f7f7',
+    backgroundColor: 'white',
   },
   title: {
     padding: 10,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   btnSub: {
     backgroundColor: '#0275d8',
-    width: 250,
+    width: 300,
     alignItems: 'center',
     padding: 10,
     marginBottom: 20,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   btnTxt: {
     fontSize: 16,
-    color: '#f7f7f7',
+    color: 'white',
   },
   plainText: {
     alignSelf: 'flex-start',
@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     minHeight: 100,
     padding: 10,
     margin: 10,
+    marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'center',
     borderStyle: 'solid',
@@ -89,10 +90,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   card1: {
-    backgroundColor: '#FE474C',
+    backgroundColor: '#957fb3',
   },
   card2: {
-    backgroundColor: '#FEB12C',
+    backgroundColor: '#6bb36b',
   },
   cardTitle: {
     fontSize: 23,
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 21,
     fontFamily: 'System',
-    color: '#f7f7f7',
+    color: 'white',
     backgroundColor: 'transparent',
   },
   newContainer: {
@@ -118,16 +119,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#FE474C',
+    backgroundColor: '#36c26c',
   },
   mainText: {
     padding: 10,
-    color: '#f7f7f7',
+    color: 'white',
     fontSize: 21,
     textAlign: 'center',
   },
   normalText: {
-    color: '#f7f7f7',
+    color: 'white',
     fontSize: 16,
     textAlign: 'center',
   },

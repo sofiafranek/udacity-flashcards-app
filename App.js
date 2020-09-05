@@ -1,11 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import 'react-native-gesture-handler';
-import Constants from 'expo-constants';
-import { StatusBar } from 'expo-status-bar';
+
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { setLocalNotification } from './src/utils/notificationHandler';
@@ -14,14 +13,6 @@ import AddDeck from './src/views/AddDeck';
 import Deck from './src/views/Deck';
 import AddCard from './src/views/AddCard';
 import Quiz from './src/views/Quiz';
-
-const AppStatusBar = () => {
-  return (
-    <View style={{ height: Constants.statusBarHeight }}>
-      <StatusBar translucent barStyle="dark-content" />
-    </View>
-  );
-};
 
 const Tab = createBottomTabNavigator();
 
@@ -69,7 +60,6 @@ const App = () => {
   return (
     <NavigationContainer>
       <View style={{ flex: 1 }}>
-        <AppStatusBar />
         <StackNavigation />
       </View>
     </NavigationContainer>
