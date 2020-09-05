@@ -3,7 +3,7 @@ import { Notifications } from 'expo';
 
 import * as Permissions from 'expo-permissions';
 
-const STORAGE_KEY = 'NOTIFICATION';
+const NOTIFICATION_KEY = 'NOTIFICATION';
 const NOTIFICATION_CHANNEL_ID = 'QUICK_REMAINDERS';
 
 const sendNotification = () => {
@@ -21,32 +21,25 @@ const sendNotification = () => {
 };
 
 export const setLocalNotification = () => {
-  AsyncStorage.getItem(STORAGE_KEY)
+  AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then((data) => {
       if (data === null) {
         Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
           if (status === 'granted') {
-            Notifications.createChannelAndroidAsync(NOTIFICATION_CHANNEL_ID)
-              .then(() => {
-                Notifications.cancelAllScheduledNotificationsAsync();
+            Notifications.cancelAllScheduledNotificationsAsync();
 
-                const nextDay = new Date();
+            let tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(20);
+            tomorrow.setMinutes(0);
 
-                nextDay.setDate(nextDay.getDate() + 1);
-                nextDay.setHours(20);
-                nextDay.setMinutes(0);
+            Notifications.scheduleLocalNotificationAsync(sendNotification(), {
+              time: tomorrow,
+              repeat: 'day',
+            });
 
-                Notifications.scheduleLocalNotificationAsync(sendNotification(), {
-                  time: nextDay,
-                  repeat: 'day',
-                });
-
-                AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(true));
-              })
-              .catch((error) => {
-                console.log('error', error);
-              });
+            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
           }
         });
       }
