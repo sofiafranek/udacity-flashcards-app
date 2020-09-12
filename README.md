@@ -1,8 +1,8 @@
 # udacity-flashcards-app
 
-Mobile Flashcards is a React Native ios application that allows users to study collections of flashcards. The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
+Mobile Flashcards is a React Native IOS application that allows users to study collections of flashcards. The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
-Tested using iphoneXR with Expo app.
+Tested using IphoneXR with Expo app. (not tested on android devices)
 
 ## Available Scripts
 
