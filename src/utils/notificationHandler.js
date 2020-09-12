@@ -1,21 +1,31 @@
+import React from 'react';
 import { AsyncStorage } from 'react-native';
+import * as Permissions from 'expo-permissions';
 import { Notifications } from 'expo';
 
-import * as Permissions from 'expo-permissions';
-
 const NOTIFICATION_KEY = 'NOTIFICATION';
-const NOTIFICATION_CHANNEL_ID = 'QUICK_REMAINDERS';
+export const clearLocalNotification = () => {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY).then(async () => {
+    try {
+      Notifications.cancelAllScheduledNotificationsAsync();
+    } catch (error) {
+      console.log(error);
+    }
+  });
+};
 
-const sendNotification = () => {
+const createNotification = () => {
   return {
-    title: 'Flashcards',
-    body: "👋 Forgot to study? here's a quick remainder",
+    title: 'Pracitice makes a man perfect!',
+    body: "👋 don't forget to practice your flashCards today!",
     ios: {
       sound: true,
     },
     android: {
-      channelId: NOTIFICATION_CHANNEL_ID,
+      sound: true,
+      priority: 'high',
       sticky: false,
+      vibrate: true,
     },
   };
 };
@@ -34,7 +44,7 @@ export const setLocalNotification = () => {
             tomorrow.setHours(20);
             tomorrow.setMinutes(0);
 
-            Notifications.scheduleLocalNotificationAsync(sendNotification(), {
+            Notifications.scheduleLocalNotificationAsync(createNotification(), {
               time: tomorrow,
               repeat: 'day',
             });

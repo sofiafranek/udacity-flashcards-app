@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 50,
     maxHeight: 400,
+    minWidth: 320,
   },
   card: {
     flex: 1,
